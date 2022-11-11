@@ -5,8 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Daftar_Pustaka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="600" Width="600">
+    <Border Padding="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="0 0 10 0">
+                <Button Content="Buku"/>
 
-    </Grid>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <!-- Penulis -->
+                <TextBlock x:Name="NamaPenulis_TextBlock" Text="Nama Penulis" FontWeight="Bold"/>
+                <TextBox x:Name="NamaPenulis_TextBox" TextChanged="Update_TextChanged"/>
+                <Button x:Name="TambahPenulisButton1" Click="TambahPenulisButton1_Click" Content="Tambah Penulis" Margin="0 10 0 0"/>
+
+                <!-- Penulis 2 -->
+                <TextBlock x:Name="NamaPenulis2_TextBlock" Visibility="Collapsed" Margin="0 10 0 0"  Text="Nama Penulis 2" FontWeight="Bold"/>
+                <TextBox x:Name="NamaPenulis2_TextBox" Visibility="Collapsed" TextChanged="Update_TextChanged"/>
+                <Button x:Name="HapusPenulis2_Button" Visibility="Collapsed"  Click="HapusPenulis2_Button_Click" Content="Hapus"/>
+
+                <!-- Penulis 3 -->
+                <TextBlock x:Name="NamaPenulis3_TextBlock" Visibility="Collapsed" Margin="0 10 0 0"  Text="Nama Penulis 3" FontWeight="Bold"/>
+                <TextBox x:Name="NamaPenulis3_TextBox" Visibility="Collapsed" TextChanged="Update_TextChanged"/>
+                <Button x:Name="HapusPenulis3_Button" Visibility="Collapsed"  Click="HapusPenulis3_Button_Click" Content="Hapus"/>
+
+                <!-- Penulis 4 -->
+                <TextBlock x:Name="NamaPenulis4_TextBlock" Visibility="Collapsed" Margin="0 10 0 0"  Text="Nama Penulis 4" FontWeight="Bold"/>
+                <TextBox x:Name="NamaPenulis4_TextBox" Visibility="Collapsed" TextChanged="Update_TextChanged"/>
+                <Button x:Name="HapusPenulis4_Button" Visibility="Collapsed"  Click="HapusPenulis4_Button_Click" Content="Hapus"/>
+
+                <!-- Tahun Terbit -->
+                <TextBlock x:Name="TahunTerbit_TextBlock" Text="Tahun Terbit" FontWeight="Bold" Margin="0 10 0 0"/>
+                <TextBox x:Name="TahunTerbit_TextBox" TextChanged="Update_TextChanged"/>
+
+                <!-- Judul Buku -->
+                <TextBlock x:Name="JudulBuku_TextBlock" Text="Judul Buku" FontWeight="Bold" Margin="0 10 0 0"/>
+                <TextBox x:Name="JudulBuku_TextBox" TextChanged="Update_TextChanged"/>
+
+                <!-- Edisi Buku -->
+                <TextBlock x:Name="EdisiBuku_TextBlock" Text="Edisi Buku" FontWeight="Bold" Margin="0 10 0 0"/>
+                <TextBox x:Name="EdisiBuku_TextBox" TextChanged="Update_TextChanged"/>
+
+                <!-- Tempat Terbit -->
+                <TextBlock x:Name="TempatTerbit_TextBlock" Text="Tempat Terbit" FontWeight="Bold" Margin="0 10 0 0"/>
+                <TextBox x:Name="TempatTerbit_TextBox" TextChanged="Update_TextChanged"/>
+
+                <!--Nama Penerbit -->
+                <TextBlock x:Name="NamaPenerbit_TextBlock" Text="Nama Penerbit" FontWeight="Bold" Margin="0 10 0 0"/>
+                <TextBox x:Name="NamaPenerbit_TextBox" TextChanged="Update_TextChanged"/>
+
+                <TextBlock Text="Daftar Pustaka" FontWeight="Bold" Margin="0 20 0 0"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="PustakaSemua" LineStackingStrategy="MaxHeight" TextWrapping="Wrap" Grid.Column="0">
+                        <Run x:Name="PustakaNamaPenulis"/><Run x:Name="PustakaTahunTerbit"/><Run x:Name="PustakaJudulBuku" FontStyle="Italic"/><Run x:Name="PustakaEdisiBuku"/><Run x:Name="PustakaTempatTerbit"/><Run x:Name="PustakaNamaPenerbit"/>
+                        </TextBlock>
+                        <Button x:Name="ButtonTambah" Content="Tambah Buku" Visibility="Hidden" Grid.Column="1" Margin="10 0 0 0"/>
+                    </Grid>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+
+    </Border>
 </Window>
