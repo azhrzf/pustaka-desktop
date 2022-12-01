@@ -1,8 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "yNqfo9qdobE/tKBmOZ8dinxZkCSiVMnRKw0/W3X6UgEIEwVb4dynvo/0FMHMp6AC3XY6pCWobgwTAygqc+1f4A==",
+  "dgSpecHash": "xD//dQK0hE/D+tkhz0F50kFD5mNI5sTPD0eCTFxTa35m4v8jjm0an4iwRLdo5zehxrrHaiUVeVgeB3jwcEtx3g==",
   "success": true,
   "projectFilePath": "D:\\Tugas Kuliah\\Tugas dan Materi\\[5] Semester\\[5] Pemrograman Platform Desktop dan Embedded\\Tugas\\NEW Tugas\\Pembuat Daftar Pustaka Baru\\Daftar Pustaka\\Daftar Pustaka\\Daftar Pustaka.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "expectedPackageFiles": [
+    "C:\\Users\\azaid\\.nuget\\packages\\mahapps.metro\\1.2.4\\mahapps.metro.1.2.4.nupkg.sha512",
+    "C:\\Users\\azaid\\.nuget\\packages\\mahapps.metro.iconpacks\\4.11.0\\mahapps.metro.iconpacks.4.11.0.nupkg.sha512",
+    "C:\\Users\\azaid\\.nuget\\packages\\mahapps.metro.iconpacks.material\\4.11.0\\mahapps.metro.iconpacks.material.4.11.0.nupkg.sha512",
+    "C:\\Users\\azaid\\.nuget\\packages\\mahapps.metro.resources\\0.6.1\\mahapps.metro.resources.0.6.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MahApps.Metro 1.2.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MahApps.Metro",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
 }

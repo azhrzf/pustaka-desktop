@@ -13,4 +13,7 @@
     <SourceRoot Include="C:\Users\azaid\.nuget\packages\" />
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMahApps_Metro Condition=" '$(PkgMahApps_Metro)' == '' ">C:\Users\azaid\.nuget\packages\mahapps.metro\1.2.4</PkgMahApps_Metro>
+  </PropertyGroup>
 </Project>

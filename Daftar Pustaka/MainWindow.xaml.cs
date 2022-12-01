@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Reflection.Metadata;
+using System.Windows.Markup;
+using System.Security.Cryptography;
 
 namespace Daftar_Pustaka
 {
@@ -33,16 +35,125 @@ namespace Daftar_Pustaka
         {
             if (bahasaIND)
             {
-                GantiBahasa.Content = "ENG (Ganti)";
+                GantiBahasaTxt.Text = "ENG";
+                GantiBahasaInd.Visibility = Visibility.Collapsed;
+                GantiBahasaEng.Visibility = Visibility.Visible;
                 bahasaIND = false;
             }
             else
             {
-                GantiBahasa.Content = "IND (Switch)";
+                GantiBahasaTxt.Text = "IND";
+                GantiBahasaEng.Visibility = Visibility.Collapsed;
+                GantiBahasaInd.Visibility = Visibility.Visible;
                 bahasaIND = true;
             }
             this.TahunTerbit_TextBox.Text += " ";
             this.TahunTerbit_TextBox.Text = this.TahunTerbit_TextBox.Text.Substring(0, this.TahunTerbit_TextBox.Text.Length - 1);
+
+
+            DaftarPustaka.Document.Blocks.Clear();
+            ButtonHapusSatu.Children.Clear();
+            ButtonEditSatu.Children.Clear();
+
+            Run[] namaPenulisRun = new Run[pustaka.Count];
+            Run[] tahunTerbitRun = new Run[pustaka.Count];
+            Run[] artikelRun = new Run[pustaka.Count];
+            Run[] judulBukuRun = new Run[pustaka.Count];
+            Run[] edisiBukuRun = new Run[pustaka.Count];
+            Run[] nomorJurnalRun = new Run[pustaka.Count];
+            Run[] bulanTerbitRun = new Run[pustaka.Count];
+            Run[] halamanRun = new Run[pustaka.Count];
+            Run[] tempatTerbitRun = new Run[pustaka.Count];
+            Run[] namaPenerbitRun = new Run[pustaka.Count];
+            Run[] platformPenerbitRun = new Run[pustaka.Count];
+            Run[] linkRun = new Run[pustaka.Count];
+
+            Paragraph[] arrayParagraph = new Paragraph[pustaka.Count];
+            Button[] arrayButton = new Button[pustaka.Count];
+            Button[] arrayButton2 = new Button[pustaka.Count];
+
+            for (int i = 0; i < pustaka.Count; i++)
+            {
+
+                var namaPenulisRunSet = new Run();
+                var tahunTerbitRunSet = new Run();
+                var artikelRunSet = new Run();
+                var judulBukuRunSet = new Run();
+                var edisiBukuRunSet = new Run();
+                var nomorJurnalRunSet = new Run();
+                var bulanTerbitRunSet = new Run();
+                var halamanRunSet = new Run();
+                var tempatTerbitRunSet = new Run();
+                var namaPenerbitRunSet = new Run();
+                var platformPenerbitRunSet = new Run();
+                var linkRunSet = new Run();
+
+                namaPenulisRun[i] = namaPenulisRunSet;
+                tahunTerbitRun[i] = tahunTerbitRunSet;
+                artikelRun[i] = artikelRunSet;
+                judulBukuRun[i] = judulBukuRunSet;
+                edisiBukuRun[i] = edisiBukuRunSet;
+                nomorJurnalRun[i] = nomorJurnalRunSet;
+                bulanTerbitRun[i] = bulanTerbitRunSet;
+                halamanRun[i] = halamanRunSet;
+                tempatTerbitRun[i] = tempatTerbitRunSet;
+                platformPenerbitRun[i] = platformPenerbitRunSet;
+                namaPenerbitRun[i] = namaPenerbitRunSet;
+                linkRun[i] = linkRunSet;
+
+                // loncat
+
+                namaPenulisRunSet.Text = tentukanPustaka(unInisialNama2(pustaka2[i].namaPenulis), "titik");
+                tahunTerbitRunSet.Text = tentukanPustaka(pustaka2[i].tahunTerbit, "titik");
+                artikelRunSet.Text = tentukanPustaka(pustaka2[i].artikel, "artikel");
+                judulBukuRunSet.Text = tentukanPustaka(pustaka2[i].judulBuku, (name == "jurnal" ? "spasi" : "titik"));
+                edisiBukuRunSet.Text = tentukanPustaka(pustaka2[i].edisiBuku, (name == "jurnal" || name == "tesis" ? "koma" : "titik"));
+                nomorJurnalRunSet.Text = tentukanPustaka(pustaka2[i].nomorJurnal, "nomorJurnal");
+                bulanTerbitRunSet.Text = tentukanPustaka(pustaka2[i].bulanTerbit, "colonBulan");
+                halamanRunSet.Text = tentukanPustaka(pustaka2[i].halaman, "titik");
+                tempatTerbitRunSet.Text = tentukanPustaka(pustaka2[i].tempatTerbit, (name == "tesis" ? "koma" : "colon"));
+                namaPenerbitRunSet.Text = tentukanPustaka(pustaka2[i].namaPenerbit, (name == "ebooks" || name == "jurnal" ? "titik" : (name == "tesis" ? "spasi" : "titikStop")));
+                platformPenerbitRunSet.Text = tentukanPustaka(pustaka2[i].platformPenerbit, (name == "tesis" ? "kurung" : "titikStop"));
+                linkRunSet.Text = name == "jurnal" ? tentukanPustaka(pustaka2[i].link, "titikStop") : pustaka2[i].link;
+
+                judulBukuRunSet.FontStyle = FontStyles.Italic;
+
+                var tes = new Paragraph();
+                arrayParagraph[i] = tes;
+                tes.LineHeight = 2;
+
+                tes.Inlines.Add(namaPenulisRun[i]);
+                tes.Inlines.Add(tahunTerbitRun[i]);
+                tes.Inlines.Add(artikelRun[i]);
+                tes.Inlines.Add(judulBukuRun[i]);
+                tes.Inlines.Add(edisiBukuRun[i]);
+                tes.Inlines.Add(nomorJurnalRun[i]);
+                tes.Inlines.Add(bulanTerbitRun[i]);
+                tes.Inlines.Add(halamanRun[i]);
+                tes.Inlines.Add(tempatTerbitRun[i]);
+                tes.Inlines.Add(namaPenerbitRun[i]);
+                tes.Inlines.Add(platformPenerbitRun[i]);
+                tes.Inlines.Add(linkRun[i]);
+
+                DaftarPustaka.Document.Blocks.Add(arrayParagraph[i]);
+
+                Button newButton = new Button();
+                var txt2 = new Button();
+                arrayButton[i] = txt2;
+                txt2.Content = "Hapus";
+                txt2.Name = $"Btn{i}";
+                ButtonHapusSatu.Children.Add(arrayButton[i]);
+                txt2.AddHandler(Button.ClickEvent, new RoutedEventHandler(BtnSatu_Click));
+
+                Button newButton2 = new Button();
+                var txt4 = new Button();
+                arrayButton2[i] = txt4;
+                txt4.Content = "Edit";
+                txt4.Name = $"Hps{i}";
+                ButtonEditSatu.Children.Add(arrayButton2[i]);
+                txt4.AddHandler(Button.ClickEvent, new RoutedEventHandler(BtnEdit_Click));
+            }
+
         }
 
         string inisialNama(string nama)
@@ -161,6 +272,34 @@ namespace Daftar_Pustaka
             return inisialNama;
         }
 
+        string unInisialNama2(string nama)
+        {
+            string[] riba = nama.Split(", dan ");
+            string inisialNama = "";
+
+            if (riba.Length < 2)
+            {
+                return nama;
+            }
+
+            else
+            {
+                nama = $"{riba[0]}, {riba[1]}";
+                string[] koma = nama.Split(", ");
+                int manyKoma = koma.Length;
+
+                inisialNama = koma[0];
+
+                for (int i = 1; i < manyKoma - 1; i++)
+                {
+                    inisialNama += $", {koma[i]}";
+                }
+                inisialNama += $", {(bahasaIND ? "dan" : "and")} {koma[manyKoma - 1]}";
+            }
+
+            return inisialNama;
+        }
+
         static string tentukanPustaka(string namaPustaka, string next)
         {
             if (!String.IsNullOrEmpty(namaPustaka) && next == "titik")
@@ -250,6 +389,7 @@ namespace Daftar_Pustaka
                     textBoxTambahSet.Name = $"TambahPenulis{i}";
                     textBoxTambahSet.TextChanged += Update_TextChanged;
                     textBoxTambahSet.Text = tambahPenulis[i];
+                    textBoxTambahSet.Padding = new Thickness(5);
                     NextPenulis.Children.Add(textBoxTambah[i]);
 
                     var buttonHapusSet = new Button();
@@ -257,6 +397,7 @@ namespace Daftar_Pustaka
                     buttonHapusSet.Content = "Hapus";
                     buttonHapusSet.Name = $"HapusPenulis{i}";
                     buttonHapusSet.Margin = margin;
+                    buttonHapusSet.Padding = new Thickness(5);
                     NextPenulis.Children.Add(buttonHapus[i]);
                     buttonHapusSet.AddHandler(Button.ClickEvent, new RoutedEventHandler(ButtonHapusPenulis_Click));
                 }
@@ -306,10 +447,92 @@ namespace Daftar_Pustaka
         }
 
         string name = "buku";
+        string name2 = "";
+
+        private void enter_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var button = (Button)sender;
+            name2 = button.Name;
+
+            button.Background = Brushes.White;
+            button.Foreground = new SolidColorBrush(Color.FromRgb(2, 190, 104));
+        }
+
+        private void leave_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var button = (Button)sender;
+            name2 = button.Name;
+
+            if (name2 != name)
+            {
+                button.Background = new SolidColorBrush(Color.FromRgb(2, 190, 104));
+                button.Foreground = Brushes.White;
+            }
+        }
+
         private void ButtonSet_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
             name = button.Name;
+            button.Background = Brushes.White;
+            button.Foreground = new SolidColorBrush(Color.FromRgb(2, 190, 104));
+
+            void hideBuku()
+            {
+                buku.Background = new SolidColorBrush(Color.FromRgb(2, 190, 104));
+                buku.Foreground = Brushes.White;
+                bukuStyle.Visibility = Visibility.Hidden;
+            }
+
+            void hideEbooks()
+            {
+                ebooks.Background = new SolidColorBrush(Color.FromRgb(2, 190, 104));
+                ebooks.Foreground = Brushes.White;
+                ebooksStyle.Visibility = Visibility.Hidden;
+            }
+
+            void hideJurnal()
+            {
+                jurnal.Background = new SolidColorBrush(Color.FromRgb(2, 190, 104));
+                jurnal.Foreground = Brushes.White;
+                jurnalStyle.Visibility = Visibility.Hidden;
+            }
+
+            void hideTesis()
+            {
+                tesis.Background = new SolidColorBrush(Color.FromRgb(2, 190, 104));
+                tesis.Foreground = Brushes.White;
+                tesisStyle.Visibility = Visibility.Hidden;
+            }
+
+            if (name == "buku")
+            {
+                hideEbooks();
+                hideJurnal();
+                hideTesis();
+                bukuStyle.Visibility = Visibility.Visible;
+            }
+            else if (name == "ebooks")
+            {
+                hideBuku();
+                hideJurnal();
+                hideTesis();
+                ebooksStyle.Visibility = Visibility.Visible;
+            }
+            else if (name == "jurnal")
+            {
+                hideBuku();
+                hideEbooks();
+                hideTesis();
+                jurnalStyle.Visibility = Visibility.Visible;
+            }
+            else if (name == "tesis")
+            {
+                hideBuku();
+                hideEbooks();
+                hideJurnal();
+                tesisStyle.Visibility = Visibility.Visible;
+            }
 
             if (name == "tesis")
             {
@@ -545,6 +768,9 @@ namespace Daftar_Pustaka
                 NamaPenerbit_TextBox.Visibility = Visibility.Visible;
                 PlatformPenerbit_TextBox.Visibility = Visibility.Visible;
                 Link_TextBox.Visibility = Visibility.Visible;
+
+                NextPenulis.Children.Clear();
+                tambahPenulis.Clear();
 
                 this.PustakaJudulBuku.Text = "";
                 this.PustakaNomorJurnal.Text = "";

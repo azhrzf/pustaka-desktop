@@ -5,29 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Daftar_Pustaka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Title="MainWindow" Height="600" Width="700">
+    <Window.Resources>
+    </Window.Resources>
     <Border Padding="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Margin="0 0 10 0">
-                <Button Name="buku" Content="Buku" Click="ButtonSet_Click"/>
-                <Button Name="ebooks" Content="E-Books" Click="ButtonSet_Click"/>
-                <Button Name="jurnal" Content="Jurnal" Click="ButtonSet_Click"/>
-                <Button Name="tesis" Content="Tesis" Click="ButtonSet_Click"/>
-                <Button x:Name="GantiBahasa" Content="IND (Switch)" Click="GantiBahasa_Click"/>
-                <Button x:Name="ButtonContoh" Content="Beri Contoh" Click="ButtonContoh_Click"/>
-                <Button Content="Lainnya"/>
-            </StackPanel>
+            <Border Grid.Column="0" Margin="0 0 10 0" Background="#02be68" CornerRadius="10" Padding="4">
+                <StackPanel>
+                    <TextBlock Text="PUSTAKA" Style="{StaticResource menuTitle}"/>
+                    <Button x:Name="buku" MouseEnter="enter_MouseEnter" MouseLeave="leave_MouseLeave" Click="ButtonSet_Click" Style="{StaticResource menuButton}" Margin="0 0 0 5" Background="White" Foreground="#02be68">
+                        <Grid>
+                            <TextBlock Text="Buku" Margin="0 0 0 2"/>
+                            <Icon:PackIconMaterial x:Name="bukuStyle" Style="{StaticResource menuButtonIcon}" Visibility="Visible"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="ebooks" MouseEnter="enter_MouseEnter" MouseLeave="leave_MouseLeave" Click="ButtonSet_Click" Style="{StaticResource menuButton}" Margin="0 0 0 5">
+                        <Grid>
+                            <TextBlock Text="E-Books" Margin="0 0 0 2"/>
+                            <Icon:PackIconMaterial x:Name="ebooksStyle" Style="{StaticResource menuButtonIcon}"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="jurnal" MouseEnter="enter_MouseEnter" MouseLeave="leave_MouseLeave" Click="ButtonSet_Click" Style="{StaticResource menuButton}" Margin="0 0 0 5">
+                        <Grid>
+                            <TextBlock Text="Jurnal" Margin="0 0 0 2"/>
+                            <Icon:PackIconMaterial x:Name="jurnalStyle" Style="{StaticResource menuButtonIcon}"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="tesis" MouseEnter="enter_MouseEnter" MouseLeave="leave_MouseLeave" Click="ButtonSet_Click" Style="{StaticResource menuButton}" Margin="0 0 0 0">
+                        <Grid>
+                            <TextBlock Text="Tesis" Margin="0 0 0 0"/>
+                            <Icon:PackIconMaterial x:Name="tesisStyle" Style="{StaticResource menuButtonIcon}"/>
+                        </Grid>
+                    </Button>
+                    <Border Padding="10 0 10 0" Margin="0 10 0 10">
+                        <Separator Background="White"/>
+                    </Border>
+                    <Button x:Name="GantiBahasa" MouseEnter="enter_MouseEnter" MouseLeave="leave_MouseLeave" Click="GantiBahasa_Click" Style="{StaticResource menuButton}" Margin="0 0 0 5">
+                        <Grid>
+                            <Ellipse HorizontalAlignment="Left" Margin="30 0 0 0" x:Name="GantiBahasaInd" Height="20" Width="20">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="resource/ind.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse HorizontalAlignment="Left" Margin="30 0 0 0" x:Name="GantiBahasaEng" Height="20" Width="20" Visibility="Collapsed">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="resource/uk.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock x:Name="GantiBahasaTxt" Text="IND" Margin="0 0 0 2"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="ButtonContoh" MouseEnter="enter_MouseEnter" MouseLeave="leave_MouseLeave" Click="ButtonContoh_Click" Style="{StaticResource menuButton}" Margin="0 0 0 0">
+                        <Grid>
+                            <TextBlock Text="Contoh" Margin="0 0 0 0"/>
+                        </Grid>
+                    </Button>
+
+                </StackPanel>
+            </Border>
             <StackPanel Grid.Column="1">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="290">
+                 <ScrollViewer VerticalScrollBarVisibility="Auto" Height="316">
                     <StackPanel>
                         <!-- Penulis -->
                         <TextBlock x:Name="NamaPenulis_TextBlock" Text="Nama Penulis" FontWeight="Bold"/>
-                        <TextBox x:Name="NamaPenulis_TextBox" TextChanged="Update_TextChanged"/>
-                        <Button x:Name="TambahPenulisButton1" Click="TambahPenulisButton1_Click" Content="Tambah Penulis" Margin="0 10 0 0"/>
+                        <TextBox x:Name="NamaPenulis_TextBox" Padding="3" TextChanged="Update_TextChanged"/>
+                        <Button x:Name="TambahPenulisButton1" Padding="3" Click="TambahPenulisButton1_Click" Content="Tambah Penulis" Margin="0 10 0 0"/>
 
                         <StackPanel x:Name="NextPenulis">
 
@@ -35,47 +82,47 @@
 
                         <!-- Tahun Terbit -->
                         <TextBlock x:Name="TahunTerbit_TextBlock" Text="Tahun Terbit" FontWeight="Bold" Margin="0 10 0 0"/>
-                        <TextBox x:Name="TahunTerbit_TextBox" TextChanged="Update_TextChanged"/>
+                        <TextBox x:Name="TahunTerbit_TextBox" Padding="3" TextChanged="Update_TextChanged"/>
 
                         <!-- Artikel -->
                         <TextBlock x:Name="Artikel_TextBlock" Text="Artikel" FontWeight="Bold" Margin="0 10 0 0" Visibility="Collapsed"/>
-                        <TextBox x:Name="Artikel_TextBox" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
+                        <TextBox x:Name="Artikel_TextBox" Padding="3" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
 
                         <!-- Judul Buku -->
                         <TextBlock x:Name="JudulBuku_TextBlock" Text="Judul Buku" FontWeight="Bold" Margin="0 10 0 0"/>
-                        <TextBox x:Name="JudulBuku_TextBox" TextChanged="Update_TextChanged"/>
+                        <TextBox x:Name="JudulBuku_TextBox" Padding="3" TextChanged="Update_TextChanged"/>
 
                         <!-- Edisi Buku -->
                         <TextBlock x:Name="EdisiBuku_TextBlock" Text="Edisi Buku (Opsional)" FontWeight="Bold" Margin="0 10 0 0"/>
-                        <TextBox x:Name="EdisiBuku_TextBox" TextChanged="Update_TextChanged"/>
+                        <TextBox x:Name="EdisiBuku_TextBox" Padding="3" TextChanged="Update_TextChanged"/>
 
                         <!-- Nomor Jurnal -->
                         <TextBlock x:Name="NomorJurnal_TextBlock" Text="Nomor Jurnal" FontWeight="Bold" Margin="0 10 0 0" Visibility="Collapsed"/>
-                        <TextBox x:Name="NomorJurnal_TextBox" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
+                        <TextBox x:Name="NomorJurnal_TextBox" Padding="3" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
 
                         <!-- Bulan Terbit -->
                         <TextBlock x:Name="BulanTerbit_TextBlock" Text="Bulan Terbit" FontWeight="Bold" Margin="0 10 0 0" Visibility="Collapsed"/>
-                        <TextBox x:Name="BulanTerbit_TextBox" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
+                        <TextBox x:Name="BulanTerbit_TextBox" Padding="3" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
 
                         <!-- Halaman -->
                         <TextBlock x:Name="Halaman_TextBlock" Text="Halaman" FontWeight="Bold" Margin="0 10 0 0" Visibility="Collapsed"/>
-                        <TextBox x:Name="Halaman_TextBox" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
+                        <TextBox x:Name="Halaman_TextBox" Padding="3" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
 
                         <!-- Tempat Terbit -->
                         <TextBlock x:Name="TempatTerbit_TextBlock" Text="Tempat Terbit" FontWeight="Bold" Margin="0 10 0 0"/>
-                        <TextBox x:Name="TempatTerbit_TextBox" TextChanged="Update_TextChanged"/>
+                        <TextBox x:Name="TempatTerbit_TextBox" Padding="3" TextChanged="Update_TextChanged"/>
 
                         <!--Nama Penerbit -->
                         <TextBlock x:Name="NamaPenerbit_TextBlock" Text="Nama Penerbit" FontWeight="Bold" Margin="0 10 0 0"/>
-                        <TextBox x:Name="NamaPenerbit_TextBox" TextChanged="Update_TextChanged"/>
+                        <TextBox x:Name="NamaPenerbit_TextBox" Padding="3" TextChanged="Update_TextChanged"/>
 
                         <!--Platform Penerbit -->
                         <TextBlock x:Name="PlatformPenerbit_TextBlock" Text="Platform Penerbit/Link" FontWeight="Bold" Margin="0 10 0 0" Visibility="Collapsed"/>
-                        <TextBox x:Name="PlatformPenerbit_TextBox" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
+                        <TextBox x:Name="PlatformPenerbit_TextBox" Padding="3" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
 
                         <!-- Link -->
                         <TextBlock x:Name="Link_TextBlock" Text="Link" FontWeight="Bold" Margin="0 10 0 0" Visibility="Collapsed"/>
-                        <TextBox x:Name="Link_TextBox" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
+                        <TextBox x:Name="Link_TextBox" Padding="3" TextChanged="Update_TextChanged" Visibility="Collapsed"/>
                     </StackPanel>
                 </ScrollViewer>
 
@@ -86,7 +133,7 @@
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="PustakaSemua" LineStackingStrategy="MaxHeight" TextWrapping="Wrap" Grid.Column="0">
+                        <TextBlock x:Name="PustakaSemua" Padding="3" Margin="0 0 0 10" LineStackingStrategy="MaxHeight" TextWrapping="Wrap" Grid.Column="0">
                         <Run x:Name="PustakaNamaPenulis"/><Run x:Name="PustakaTahunTerbit"/><Run x:Name="PustakaArtikel"/><Run x:Name="PustakaJudulBuku" FontStyle="Italic"/><Run x:Name="PustakaEdisiBuku"/><Run x:Name="PustakaNomorJurnal"/><Run x:Name="PustakaTempatTerbit"/><Run x:Name="PustakaNamaPenerbit"/><Run x:Name="PustakaPlatformPenerbit"/><Run x:Name="PustakaBulanTerbit"/><Run x:Name="PustakaHalaman"/><Run x:Name="PustakaLink"/>
                         </TextBlock>
                         <Button x:Name="ButtonTambah" Click="ButtonTambah_Click" Content="Tambah Buku" Visibility="Hidden" Grid.Column="1" Margin="10 0 0 0"/>
@@ -100,7 +147,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <RichTextBox x:Name="DaftarPustaka" Grid.Column="0" IsReadOnly="True" TextChanged="DaftarPustaka_TextChanged">
+                        <RichTextBox x:Name="DaftarPustaka" Padding="3" Grid.Column="0" IsReadOnly="True" TextChanged="DaftarPustaka_TextChanged">
                         </RichTextBox>
                         <StackPanel x:Name="ButtonEditSatu" Grid.Column="1">
 
@@ -110,7 +157,7 @@
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
-                <Button x:Name="HapusDaftarPustaka" Content="Clear" Click="HapusDaftarPustaka_Click" Visibility="Collapsed"/>
+                <Button x:Name="HapusDaftarPustaka" Padding="3" Content="Clear" Click="HapusDaftarPustaka_Click" Visibility="Collapsed"/>
             </StackPanel>
         </Grid>
     </Border>
